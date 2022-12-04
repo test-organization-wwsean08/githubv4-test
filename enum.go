@@ -1099,6 +1099,7 @@ const (
 	ProjectNextFieldTypeDate               ProjectNextFieldType = "DATE"                 // Date.
 	ProjectNextFieldTypeIteration          ProjectNextFieldType = "ITERATION"            // Iteration.
 	ProjectNextFieldTypeTracks             ProjectNextFieldType = "TRACKS"               // Tracks.
+	ProjectNextFieldTypeTrackedBy          ProjectNextFieldType = "TRACKED_BY"           // Tracked by.
 )
 
 // ProjectNextOrderField represents properties by which the return project can be ordered.
@@ -1170,6 +1171,7 @@ const (
 	ProjectV2FieldTypeDate               ProjectV2FieldType = "DATE"                 // Date.
 	ProjectV2FieldTypeIteration          ProjectV2FieldType = "ITERATION"            // Iteration.
 	ProjectV2FieldTypeTracks             ProjectV2FieldType = "TRACKS"               // Tracks.
+	ProjectV2FieldTypeTrackedBy          ProjectV2FieldType = "TRACKED_BY"           // Tracked by.
 )
 
 // ProjectV2ItemFieldValueOrderField represents properties by which project v2 item field value connections can be ordered.
@@ -1208,6 +1210,15 @@ const (
 	ProjectV2OrderFieldNumber    ProjectV2OrderField = "NUMBER"     // The project's number.
 	ProjectV2OrderFieldUpdatedAt ProjectV2OrderField = "UPDATED_AT" // The project's date and time of update.
 	ProjectV2OrderFieldCreatedAt ProjectV2OrderField = "CREATED_AT" // The project's date and time of creation.
+)
+
+// ProjectV2State represents the possible states of a project v2.
+type ProjectV2State string
+
+// The possible states of a project v2.
+const (
+	ProjectV2StateOpen   ProjectV2State = "OPEN"   // A project v2 that is still open.
+	ProjectV2StateClosed ProjectV2State = "CLOSED" // A project v2 that has been closed.
 )
 
 // ProjectV2ViewLayout represents the layout of a project v2 view.
@@ -1575,10 +1586,11 @@ type RepositoryLockReason string
 
 // The possible reasons a given repository could be in a locked state.
 const (
-	RepositoryLockReasonMoving    RepositoryLockReason = "MOVING"    // The repository is locked due to a move.
-	RepositoryLockReasonBilling   RepositoryLockReason = "BILLING"   // The repository is locked due to a billing related reason.
-	RepositoryLockReasonRename    RepositoryLockReason = "RENAME"    // The repository is locked due to a rename.
-	RepositoryLockReasonMigrating RepositoryLockReason = "MIGRATING" // The repository is locked due to a migration.
+	RepositoryLockReasonMoving           RepositoryLockReason = "MOVING"            // The repository is locked due to a move.
+	RepositoryLockReasonBilling          RepositoryLockReason = "BILLING"           // The repository is locked due to a billing related reason.
+	RepositoryLockReasonRename           RepositoryLockReason = "RENAME"            // The repository is locked due to a rename.
+	RepositoryLockReasonMigrating        RepositoryLockReason = "MIGRATING"         // The repository is locked due to a migration.
+	RepositoryLockReasonTradeRestriction RepositoryLockReason = "TRADE_RESTRICTION" // The repository is locked due to a trade controls related reason.
 )
 
 // RepositoryMigrationOrderDirection represents possible directions in which to order a list of repository migrations when provided an `orderBy` argument.
@@ -1843,6 +1855,15 @@ type SponsorsGoalKind string
 const (
 	SponsorsGoalKindTotalSponsorsCount       SponsorsGoalKind = "TOTAL_SPONSORS_COUNT"       // The goal is about reaching a certain number of sponsors.
 	SponsorsGoalKindMonthlySponsorshipAmount SponsorsGoalKind = "MONTHLY_SPONSORSHIP_AMOUNT" // The goal is about getting a certain amount in USD from sponsorships each month.
+)
+
+// SponsorsListingFeaturedItemFeatureableType represents the different kinds of records that can be featured on a GitHub Sponsors profile page.
+type SponsorsListingFeaturedItemFeatureableType string
+
+// The different kinds of records that can be featured on a GitHub Sponsors profile page.
+const (
+	SponsorsListingFeaturedItemFeatureableTypeRepository SponsorsListingFeaturedItemFeatureableType = "REPOSITORY" // A repository owned by the user or organization with the GitHub Sponsors profile.
+	SponsorsListingFeaturedItemFeatureableTypeUser       SponsorsListingFeaturedItemFeatureableType = "USER"       // A user who belongs to the organization with the GitHub Sponsors profile.
 )
 
 // SponsorsTierOrderField represents properties by which Sponsors tiers connections can be ordered.
